@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <UseWindowsForms>true</UseWindowsForms>
+        <!--<ApplicationIcon>assets\logo.ico</ApplicationIcon>-->
+        <AssemblyName>$(MSBuildProjectName.Replace(" ", "_"))</AssemblyName>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+        <Deterministic>false</Deterministic>
+        <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+        <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+        <IsPackable>false</IsPackable>
+        <LangVersion>latest</LangVersion>
+        <NeutralLanguage>fr</NeutralLanguage>
+        <Nullable>enable</Nullable>
+        <OutputType>WinExe</OutputType>
+        <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+        <PublishSingleFile>true</PublishSingleFile>
+        <RootNamespace>$(MSBuildProjectName.Replace(" ", ""))</RootNamespace>
+        <StartupObject>$(MSBuildProjectName.Replace(" ", "")).Program</StartupObject>
+        <TargetFramework>net48</TargetFramework>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+        <DebugType>embedded</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <DebugType>None</DebugType>
+    </PropertyGroup>
+</Project>
