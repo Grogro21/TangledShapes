@@ -16,5 +16,6 @@ namespace ShapeSMOdel
         }
 
         public string Name { get => _name; }
+        public Point Position { get => _position; set => _position = value; }
     }
 }
