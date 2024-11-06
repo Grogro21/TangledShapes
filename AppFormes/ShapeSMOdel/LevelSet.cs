@@ -40,7 +40,7 @@ namespace ShapeSMOdel
                     shapes.Append(new Shape(shape, Point.Empty));
                 }
             }
-            Random rand = new Random();
+            Random rand = Random.Shared;
             return shapes[rand.Next(shapes.Length)];
         }
 
@@ -50,12 +50,12 @@ namespace ShapeSMOdel
             SelectableShape shapeToAdd;
             do
             {
-                Random rand = new Random();
+                Random rand = Random.Shared;
                 string shapeName = Directory.GetFiles(dir)[rand.Next(Directory.GetFiles(dir).Length)];
                 shapeToAdd = new SelectableShape(new Shape(shapeName, Point.Empty, theme));
 
             }
-            while (selectableShapes.FirstOrDefault((SelectableShape s) => s.getName == shapeToAdd.getName) != null);
+            while (selectableShapes.FirstOrDefault((SelectableShape s) => s.GetName() == shapeToAdd.GetName()) != null);
             return shapeToAdd;
         }
 

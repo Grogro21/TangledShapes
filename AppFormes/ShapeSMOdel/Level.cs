@@ -19,16 +19,24 @@
         public TimeSpan Timer { get => _timer; set => _timer = value; }
         public SelectableShape[] SelectableShapes { get => _selectableShapes; }
 
-        public bool IsShapeInTheDrawing(SelectableShape shape)
+        public bool IsShapeInTheDrawing(SelectableShape selectableShape)
         {
-            foreach (Shape s in _tangledShapes)
-            {
-                if (s.Name == shape.GetName())
-                {
-                    return true;
-                }
-            }
-            return false;
+
+            IEnumerable<Shape> shapesQuery =
+                from s in _tangledShapes
+                where s.Name == selectableShape.GetName()
+                select s;
+
+            return shapesQuery.Any();
+
+            //foreach (Shape s in _tangledShapes)
+            //{
+            //    if (s.Name == selectableShape.GetName())
+            //    {
+            //        return true;
+            //    }
+            //}
+            //return false;
         }
 
         public int CalcNumberCorrectAnswers()
