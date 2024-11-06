@@ -13,9 +13,14 @@
 
         public bool IsSelected { get => _isSelected; set => _isSelected = value; }
 
-        public string getName()
+        public string GetName()
         {
             return _shape.Name;
+        }
+
+        public string GetTheme()
+        {
+            return _shape.Theme;
         }
         public bool Select()
         {

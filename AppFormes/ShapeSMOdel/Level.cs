@@ -17,12 +17,13 @@
         }
 
         public TimeSpan Timer { get => _timer; set => _timer = value; }
+        public SelectableShape[] SelectableShapes { get => _selectableShapes; }
 
         public bool IsShapeInTheDrawing(SelectableShape shape)
         {
             foreach (Shape s in _tangledShapes)
             {
-                if (s.Name == shape.getName())
+                if (s.Name == shape.GetName())
                 {
                     return true;
                 }
