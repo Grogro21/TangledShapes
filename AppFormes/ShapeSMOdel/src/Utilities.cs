@@ -1,4 +1,8 @@
-﻿namespace ShapeSMOdel
+﻿using System;
+using System.IO;
+using System.Linq;
+
+namespace ShapeSMOdel
 {
     public class Utilities
     {

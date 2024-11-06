@@ -1,4 +1,7 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.IO;
+using System.Linq;
 
 namespace ShapeSMOdel
 {
@@ -40,7 +43,7 @@ namespace ShapeSMOdel
                     shapes.Append(new Shape(shape, Point.Empty));
                 }
             }
-            Random rand = Random.Shared;
+            Random rand = new Random();
             return shapes[rand.Next(shapes.Length)];
         }
 
@@ -50,7 +53,7 @@ namespace ShapeSMOdel
             SelectableShape shapeToAdd;
             do
             {
-                Random rand = Random.Shared;
+                Random rand = new Random();
                 string shapeName = Directory.GetFiles(dir)[rand.Next(Directory.GetFiles(dir).Length)];
                 shapeToAdd = new SelectableShape(new Shape(shapeName, Point.Empty, theme));
 

@@ -1,4 +1,8 @@
-﻿namespace ShapeSMOdel
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ShapeSMOdel
 {
     public class Level
     {
