@@ -89,7 +89,7 @@ namespace ShapeSMOdel
 
 
 
-        public Level CreateAbstractLevel(int numberAnswer, string ThemeName)
+        public Level CreateMonoThemeLevel(int numberAnswer, string ThemeName)
         {
             Shape[] tangledShapes = [];
             SelectableShape[] selectableShapes = [];
@@ -124,10 +124,10 @@ namespace ShapeSMOdel
                     CreateLevelWithThemes(3, 9);
                     break;
                 case 4:
-                    CreateAbstractLevel(9, Utilities.GetRandomTheme());
+                    CreateMonoThemeLevel(9, Utilities.GetRandomTheme());
                     break;
                 case 5:
-                    CreateAbstractLevel(9, "Abstract");
+                    CreateMonoThemeLevel(9, "Abstract");
                     break;
                 case 6:
                     break;
