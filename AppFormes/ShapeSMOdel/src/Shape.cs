@@ -15,6 +15,11 @@ namespace ShapeSMOdel
             _theme = theme;
         }
 
+        public Shape(SelectableShape selectableShape, Point realPosition) : this(selectableShape.GetName(), realPosition, selectableShape.GetTheme())
+        { }
+
         public string Name { get => _name; }
+        public Point Position { get => _position; set => _position = value; }
+        public string Theme { get => _theme; }
     }
 }

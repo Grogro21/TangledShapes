@@ -1,25 +1,27 @@
-﻿using System.Drawing;
-
-namespace ShapeSMOdel
+﻿namespace ShapeSMOdel
 {
     public class SelectableShape
     {
         private bool _isSelected;
-        private Point _positionAnswer;
         private Shape _shape;
 
-        public SelectableShape(Shape shape, Point position)
+        public SelectableShape(Shape shape)
         {
             _shape = shape;
-            _positionAnswer = position;
             _isSelected = false;
         }
 
-        public bool Selected { get => _isSelected; set => _isSelected = value; }
+        public bool IsSelected { get => _isSelected; set => _isSelected = value; }
+        public Shape Shape { get => _shape; }
 
-        public string getName()
+        public string GetName()
         {
             return _shape.Name;
+        }
+
+        public string GetTheme()
+        {
+            return _shape.Theme;
         }
         public bool Select()
         {

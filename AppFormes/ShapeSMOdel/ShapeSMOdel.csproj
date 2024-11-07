@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<AssemblyName>$(MSBuildProjectName.Replace(" ", "_"))</AssemblyName>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+		<Deterministic>false</Deterministic>
+		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+		<EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+		<IsPackable>false</IsPackable>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+		<OutputType>Library</OutputType>
+		<ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+		<PublishSingleFile>true</PublishSingleFile>
+		<RootNamespace>$(MSBuildProjectName.Replace(" ", ""))</RootNamespace>
+		<TargetFramework>net48</TargetFramework>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DebugType>None</DebugType>
+	</PropertyGroup>
+</Project>
