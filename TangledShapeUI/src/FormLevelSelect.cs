@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace TangledShapeUI
@@ -8,6 +10,10 @@ namespace TangledShapeUI
         public FormLevelSelect()
         {
             this.InitializeComponent();
+#if DEBUG
+            this._pbxPreview.Image = Image.FromFile(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath)!,
+                "assets/placeholder.jpg"));
+#endif
         }
 
         private void BtnLevelClicked(object sender, EventArgs e)
