@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <UseWindowsForms>true</UseWindowsForms>
-        <!--<ApplicationIcon>assets\logo.ico</ApplicationIcon>-->
+        <ApplicationIcon>assets\logo.ico</ApplicationIcon>
         <AssemblyName>$(MSBuildProjectName.Replace(" ", "_"))</AssemblyName>
-        <PlatformTarget>AnyCPU</PlatformTarget>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
         <Deterministic>false</Deterministic>
         <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
         <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+        <EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
+        <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
         <ImplicitUsings>disable</ImplicitUsings>
         <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
         <IsPackable>false</IsPackable>
@@ -16,12 +16,14 @@
         <NeutralLanguage>fr</NeutralLanguage>
         <Nullable>enable</Nullable>
         <OutputType>WinExe</OutputType>
+        <PlatformTarget>AnyCPU</PlatformTarget>
         <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
         <PublishSingleFile>true</PublishSingleFile>
         <RootNamespace>$(MSBuildProjectName.Replace(" ", ""))</RootNamespace>
         <StartupObject>$(MSBuildProjectName.Replace(" ", "")).Program</StartupObject>
         <TargetFramework>net48</TargetFramework>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <UseWindowsForms>true</UseWindowsForms>
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
 
@@ -35,5 +37,9 @@
 
     <ItemGroup>
         <Content Include="assets/**" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="System.Resources.Extensions" Version="8.0.0"/>
     </ItemGroup>
 </Project>

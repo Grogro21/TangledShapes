@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this._flpInfo = new System.Windows.Forms.FlowLayoutPanel();
             this._flpFirstName = new System.Windows.Forms.FlowLayoutPanel();
             this._lblFirstName = new System.Windows.Forms.Label();
@@ -153,6 +154,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this._btnStart);
             this.Controls.Add(this._flpInfo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu de connexion";

@@ -1,4 +1,0 @@
-﻿<Solution>
-  <Project Path="LibShapeSMOdel\LibShapeSMOdel.csproj" Type="Classic C#" />
-  <Project Path="TangledShapeUI\TangledShapeUI.csproj" Type="Classic C#" />
-</Solution>

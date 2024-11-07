@@ -29,11 +29,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBetweenLevel));
             this._lblResult = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            //
+            // 
             // _lblResult
-            //
+            // 
             this._lblResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this._lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 64F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this._lblResult.Location = new System.Drawing.Point(0, 0);
@@ -42,13 +43,14 @@
             this._lblResult.TabIndex = 0;
             this._lblResult.Text = "Placeholder";
             this._lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            //
+            // 
             // FormBetweenLevel
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this._lblResult);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormBetweenLevel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Niveau Suivant";
