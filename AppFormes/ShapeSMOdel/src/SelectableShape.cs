@@ -12,6 +12,7 @@
         }
 
         public bool IsSelected { get => _isSelected; set => _isSelected = value; }
+        public Shape Shape { get => _shape; }
 
         public string GetName()
         {

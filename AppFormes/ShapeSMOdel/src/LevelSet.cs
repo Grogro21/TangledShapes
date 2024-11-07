@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -23,28 +24,25 @@ namespace ShapeSMOdel
 
         public bool IsShapeInTangledShapes(SelectableShape shape, Shape[] tangledShapes)
         {
-            foreach (Shape s in tangledShapes)
-            {
-                if (s.Name == shape.GetName())
-                {
-                    return true;
-                }
-            }
-            return false;
+            IEnumerable<Shape> shapesQuery =
+                from s in tangledShapes
+                where s.Name == shape.GetName()
+                select s;
+
+            return shapesQuery.Any();
         }
 
         public Shape CreateTangleShapeByTheme(string theme, Shape[] tangledshapes, SelectableShape[] selectableShapes)
         {
-            Shape[] shapes = [];
-            foreach (SelectableShape shape in selectableShapes)
-            {
-                if (shape.GetTheme() == theme && !IsShapeInTangledShapes(shape, tangledshapes))
-                {
-                    shapes.Append(new Shape(shape, Point.Empty));
-                }
-            }
+
+            IEnumerable<Shape> shapes =
+                from s in selectableShapes
+                where s.GetTheme() == theme && !IsShapeInTangledShapes(s, tangledshapes)
+                select s.Shape;
+
+
             Random rand = new Random();
-            return shapes[rand.Next(shapes.Length)];
+            return shapes.ElementAt(rand.Next(shapes.Count()));
         }
 
         public SelectableShape CreateAnswer(string theme, SelectableShape[] selectableShapes)
@@ -62,30 +60,18 @@ namespace ShapeSMOdel
             return shapeToAdd;
         }
 
-        //public Level CreateLevelDiffTheme(int numberThemes)
-        //{
-        //    Shape[] tangledShapes = [];
-        //    SelectableShape[] selectableShapes = [];
-        //    string[] answerThemes = Utilities.GetRandomThemes(numberThemes);
-        //    string[] tangledThemes = Utilities.ChoseTangledThemes(answerThemes, 3);
-
-        //    foreach (string theme in answerThemes)
-        //    {
-        //        selectableShapes.Append(CreateAnswer(theme, selectableShapes));
-        //    }
-        //    foreach (string theme in tangledThemes)
-        //    {
-        //        tangledShapes.Append(CreateTangleShapeByTheme(theme, tangledShapes, selectableShapes));
-        //    }
-        //    return(new Level(tangledShapes, selectableShapes));
-        //}
 
         public Level CreateLevelWithThemes(int numberThemes, int numberAnswer)
         {
+            if (numberThemes % 3 != 0)
+            {
+                throw new ArgumentException("Theme number must be a multiple of Tangled Shapes number.");
+            }
             Shape[] tangledShapes = [];
             SelectableShape[] selectableShapes = [];
             string[] answerThemes = Utilities.GetRandomThemes(numberThemes);
-            string[] tangledThemes = Utilities.ChoseTangledThemes(answerThemes, Math.Min(3, numberThemes));
+
+            string[] tangledThemes = Utilities.ChoseTangledThemes(answerThemes, 3);
             foreach (string theme in answerThemes)
             {
                 for (int i = 0; i < numberAnswer / numberThemes; i++)
@@ -93,43 +79,39 @@ namespace ShapeSMOdel
                     selectableShapes.Append(CreateAnswer(theme, selectableShapes));
                 }
             }
-            while (tangledShapes.Length < 3)
+            foreach (string theme in tangledThemes)
             {
-                foreach (string theme in tangledThemes)
-                {
-                    tangledShapes.Append(CreateTangleShapeByTheme(theme, tangledShapes, selectableShapes));
-                }
+                tangledShapes.Append(CreateTangleShapeByTheme(theme, tangledShapes, selectableShapes));
             }
 
             return (new Level(tangledShapes, selectableShapes));
         }
 
-        public Level CreateAbstractLevel(int numberAnswer)
+
+
+        public Level CreateAbstractLevel(int numberAnswer, string ThemeName)
         {
             Shape[] tangledShapes = [];
             SelectableShape[] selectableShapes = [];
             for (int i = 0; i < numberAnswer; i++)
             {
-                selectableShapes.Append(CreateAnswer("Abstract", selectableShapes));
+                selectableShapes.Append(CreateAnswer(ThemeName, selectableShapes));
             }
             for (int i = 0; i < 3; i++)
             {
-                tangledShapes.Append(CreateTangleShapeByTheme("Abstract", tangledShapes, selectableShapes));
+                tangledShapes.Append(CreateTangleShapeByTheme(ThemeName, tangledShapes, selectableShapes));
             }
             return (new Level(tangledShapes, selectableShapes));
         }
 
         public void NextLevel()
         {
-            if (_isFinished || _levels.Length >= 5)
+
+            if (_isFinished || _levels.Length >= 5 || !_levels.Last().IsLevelFinished())
             {
                 return;
             }
 
-            if (!_levels.Last().IsLevelFinished())
-            {
-                return;
-            }
             switch (_difficulty)
             {
                 case 1:
@@ -142,10 +124,10 @@ namespace ShapeSMOdel
                     CreateLevelWithThemes(3, 9);
                     break;
                 case 4:
-                    CreateLevelWithThemes(1, 9);
+                    CreateAbstractLevel(9, Utilities.GetRandomTheme());
                     break;
                 case 5:
-                    CreateAbstractLevel(9);
+                    CreateAbstractLevel(9, "Abstract");
                     break;
                 case 6:
                     break;
@@ -160,15 +142,7 @@ namespace ShapeSMOdel
 
         public bool IsSetFinished()
         {
-            if (_isFinished)
-            {
-                return true;
-            }
-            if (_levels.Length >= 5 && _levels.Last().IsLevelFinished())
-            {
-                return true;
-            }
-            return false;
+            return _isFinished || _levels.Length >= 5 && _levels.Last().IsLevelFinished();
         }
 
         public TimeSpan GetTotalTime()

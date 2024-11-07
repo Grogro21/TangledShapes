@@ -38,10 +38,24 @@ namespace ShapeSMOdel
                     Random rand = new Random();
                     themeName = Directory.GetFiles(dir)[rand.Next(Directory.GetFiles(dir).Length)];
                 }
-                while (themes.Contains(themeName));
+                while (themes.Contains(themeName) && themeName == "Abstract");
                 themes.Append(themeName);
             }
             return themes;
+        }
+
+        public static string GetRandomTheme()
+        {
+            string themeName;
+            string dir = Utilities.FindAssetsDirectory();
+            do
+            {
+                Random rand = new Random();
+                themeName = Directory.GetFiles(dir)[rand.Next(Directory.GetFiles(dir).Length)];
+            }
+            while (themeName == "Abstract");
+
+            return themeName;
         }
 
         public static string[] ChoseTangledThemes(string[] themes, int number)
