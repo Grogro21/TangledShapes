@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -6,9 +6,10 @@ namespace ShapeSMOdel
 {
     public class Utilities
     {
+        public static string PicturesDirectory { get; set; } = string.Empty;
         public static string FindDirectory(string theme)
         {
-            string dir = Utilities.FindAssetsDirectory() + Path.DirectorySeparatorChar + theme;
+            string dir = PicturesDirectory + Path.DirectorySeparatorChar + theme;
             if (!Directory.Exists(dir))
             {
                 throw new Exception("Theme not found");
@@ -16,19 +17,19 @@ namespace ShapeSMOdel
             return dir;
         }
 
-        public static string FindAssetsDirectory()
-        {
-            string dir = Environment.CurrentDirectory;
-            dir = Path.Combine(dir, "..");
-            dir = dir + Path.DirectorySeparatorChar + "Assets";
-            return dir;
-        }
+        //public static string FindAssetsDirectory()
+        //{
+        //    string dir = Environment.CurrentDirectory;
+        //    dir = Path.Combine(dir, "..");
+        //    dir = dir + Path.DirectorySeparatorChar + "Assets";
+        //    return dir;
+        //}
 
 
         public static string[] GetRandomThemes(int number)
         {
             string themeName;
-            string dir = Utilities.FindAssetsDirectory();
+            string dir = PicturesDirectory;
             string[] themes = [];
 
             for (int i = 0; i < number; i++)
@@ -47,7 +48,7 @@ namespace ShapeSMOdel
         public static string GetRandomTheme()
         {
             string themeName;
-            string dir = Utilities.FindAssetsDirectory();
+            string dir = PicturesDirectory;
             do
             {
                 Random rand = new Random();
